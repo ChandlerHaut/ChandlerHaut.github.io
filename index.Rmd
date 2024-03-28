@@ -2,12 +2,13 @@
 title: "my fancy website"
 output: html_document
 ---
-## [HOME] | [ABOUT ME] | [CV]
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## [HOME] | [ABOUT ME] | [CV]
+
 
 ```{r, out.width= "600px", echo=FALSE}
 knitr::include_graphics("./littlebrownbat.jpg")
