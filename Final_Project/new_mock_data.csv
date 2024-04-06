@@ -1,0 +1,101 @@
+location,species,count,percent
+South Mountain,Deer Mouse,1,0.004081632653061225
+South Mountain,Chiseled-tooth Kangaroo Rat,2,0.00816326530612245
+South Mountain,Sagebrush Vole,3,0.012244897959183673
+South Mountain,Deer Mouse,1,0.004081632653061225
+South Mountain,House Mouse,1,0.004081632653061225
+South Mountain,Deer Mouse,5,0.02040816326530612
+South Mountain,Deer Mouse,2,0.00816326530612245
+South Mountain,Chiseled-tooth Kangaroo Rat,5,0.02040816326530612
+South Mountain,Dark Kangaroo Mouse,2,0.00816326530612245
+South Mountain,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+South Mountain,Dark Kangaroo Mouse,3,0.012244897959183673
+South Mountain,House Mouse,2,0.00816326530612245
+South Mountain,Sagebrush Vole,3,0.012244897959183673
+South Mountain,Sagebrush Vole,1,0.004081632653061225
+South Mountain,Chiseled-tooth Kangaroo Rat,5,0.02040816326530612
+South Mountain,Deer Mouse,5,0.02040816326530612
+South Mountain,House Mouse,2,0.00816326530612245
+South Mountain,Chiseled-tooth Kangaroo Rat,4,0.0163265306122449
+South Mountain,Deer Mouse,3,0.012244897959183673
+South Mountain,House Mouse,2,0.00816326530612245
+West Canyon,Dark Kangaroo Mouse,5,0.02040816326530612
+West Canyon,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+West Canyon,House Mouse,1,0.004081632653061225
+West Canyon,Deer Mouse,3,0.012244897959183673
+West Canyon,House Mouse,5,0.02040816326530612
+West Canyon,Chiseled-tooth Kangaroo Rat,2,0.00816326530612245
+West Canyon,House Mouse,3,0.012244897959183673
+West Canyon,Deer Mouse,0,0
+West Canyon,Sagebrush Vole,2,0.00816326530612245
+West Canyon,House Mouse,5,0.02040816326530612
+West Canyon,Deer Mouse,3,0.012244897959183673
+West Canyon,Dark Kangaroo Mouse,0,0
+West Canyon,Sagebrush Vole,2,0.00816326530612245
+West Canyon,Deer Mouse,4,0.0163265306122449
+West Canyon,House Mouse,4,0.0163265306122449
+West Canyon,Deer Mouse,0,0
+West Canyon,Chiseled-tooth Kangaroo Rat,4,0.0163265306122449
+West Canyon,Deer Mouse,5,0.02040816326530612
+West Canyon,Sagebrush Vole,4,0.0163265306122449
+West Canyon,Dark Kangaroo Mouse,0,0
+Medic Hill,Dark Kangaroo Mouse,1,0.004081632653061225
+Medic Hill,Sagebrush Vole,3,0.012244897959183673
+Medic Hill,Deer Mouse,4,0.0163265306122449
+Medic Hill,Deer Mouse,1,0.004081632653061225
+Medic Hill,House Mouse,1,0.004081632653061225
+Medic Hill,Sagebrush Vole,5,0.02040816326530612
+Medic Hill,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+Medic Hill,Deer Mouse,2,0.00816326530612245
+Medic Hill,House Mouse,1,0.004081632653061225
+Medic Hill,Deer Mouse,4,0.0163265306122449
+Medic Hill,Dark Kangaroo Mouse,5,0.02040816326530612
+Medic Hill,Sagebrush Vole,2,0.00816326530612245
+Medic Hill,Deer Mouse,4,0.0163265306122449
+Medic Hill,Chiseled-tooth Kangaroo Rat,0,0
+Medic Hill,Dark Kangaroo Mouse,5,0.02040816326530612
+Medic Hill,House Mouse,3,0.012244897959183673
+Medic Hill,Deer Mouse,1,0.004081632653061225
+Medic Hill,House Mouse,1,0.004081632653061225
+Medic Hill,Sagebrush Vole,4,0.0163265306122449
+Medic Hill,House Mouse,5,0.02040816326530612
+Cedar Point,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+Cedar Point,House Mouse,4,0.0163265306122449
+Cedar Point,Dark Kangaroo Mouse,5,0.02040816326530612
+Cedar Point,Sagebrush Vole,0,0
+Cedar Point,Deer Mouse,0,0
+Cedar Point,Chiseled-tooth Kangaroo Rat,5,0.02040816326530612
+Cedar Point,Sagebrush Vole,3,0.012244897959183673
+Cedar Point,Deer Mouse,5,0.02040816326530612
+Cedar Point,Dark Kangaroo Mouse,3,0.012244897959183673
+Cedar Point,Dark Kangaroo Mouse,0,0
+Cedar Point,House Mouse,2,0.00816326530612245
+Cedar Point,Chiseled-tooth Kangaroo Rat,4,0.0163265306122449
+Cedar Point,Chiseled-tooth Kangaroo Rat,3,0.012244897959183673
+Cedar Point,Deer Mouse,3,0.012244897959183673
+Cedar Point,House Mouse,1,0.004081632653061225
+Cedar Point,Sagebrush Vole,0,0
+Cedar Point,Dark Kangaroo Mouse,0,0
+Cedar Point,Dark Kangaroo Mouse,0,0
+Cedar Point,Chiseled-tooth Kangaroo Rat,3,0.012244897959183673
+Cedar Point,House Mouse,2,0.00816326530612245
+Tickville,Dark Kangaroo Mouse,1,0.004081632653061225
+Tickville,Sagebrush Vole,0,0
+Tickville,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+Tickville,Dark Kangaroo Mouse,0,0
+Tickville,Deer Mouse,0,0
+Tickville,Chiseled-tooth Kangaroo Rat,2,0.00816326530612245
+Tickville,House Mouse,0,0
+Tickville,House Mouse,5,0.02040816326530612
+Tickville,Chiseled-tooth Kangaroo Rat,3,0.012244897959183673
+Tickville,Chiseled-tooth Kangaroo Rat,5,0.02040816326530612
+Tickville,Chiseled-tooth Kangaroo Rat,2,0.00816326530612245
+Tickville,Sagebrush Vole,3,0.012244897959183673
+Tickville,Sagebrush Vole,4,0.0163265306122449
+Tickville,Sagebrush Vole,3,0.012244897959183673
+Tickville,Dark Kangaroo Mouse,5,0.02040816326530612
+Tickville,Dark Kangaroo Mouse,0,0
+Tickville,Dark Kangaroo Mouse,1,0.004081632653061225
+Tickville,Chiseled-tooth Kangaroo Rat,2,0.00816326530612245
+Tickville,Chiseled-tooth Kangaroo Rat,1,0.004081632653061225
+Tickville,Dark Kangaroo Mouse,4,0.0163265306122449
