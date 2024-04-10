@@ -1,14 +1,13 @@
 library(tidyverse)
 library(gapminder)
 library(stringr)
-
+library(leaflet)
+library(sf)
+library(shiny)
+library(leaflet.extras)
+library(htmltools)
 
 df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
-
-View(df)
-
-names(df)
-
 
 bats <- df %>% 
   filter(!is.na(CommonName)) %>% 
@@ -16,14 +15,11 @@ bats <- df %>%
                                   "Townsend big-eared bat")) %>% 
   select(-"organization_name",-"species_list",-"frame", -"project_name")
 
-
 nb <- #Placed the below code in the origianl bats df to keep my SHIT together
   bats %>% 
   filter(!is.na(CommonName)) %>% 
   mutate(CommonName = str_replace(CommonName, "Townsend\x92s big-eared bat", 
                                   "Townsend big-eared bat"))
-
-unique(nb$reviewed)
 
 #figure out what your quesiton is!!!!!!
 # We want to see the population size changes over time of the bats, maybe use the animate
@@ -35,7 +31,7 @@ nb %>%
   geom_bar(aes(color = CommonName))+
   facet_wrap(~admin1, scales = "free")
 
-names(nb)
+
 
 wdf <- 
 nb %>% 
@@ -50,26 +46,14 @@ wdf %>%
   geom_point()+
   geom_density2d(aes(x= sum))
 
-library(leaflet)
-library(sf)
-myLocation <- c(lon = -95.3632715, lat = 29.7632836)
 
-
-
- m <- leaflet() %>% addTiles()
 
 wdf_sf <- 
   wdf %>% 
   st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 
-leaflet() %>% 
-  addTiles() %>% 
-  addMarkers(data = ndf, popup = ~RefugeName)
 
-plot1 <- 
-  wdf %>% 
-  ggplot(aes(x=longitude, y = latitude))+
-  geom_jitter()
+
 
 ggsave(filename = "./plot1.png", plot = plot1, width = 6, height = 6)
 
@@ -82,29 +66,50 @@ leaflet() %>%
   #addMarkers( popup = ~RefugeName) %>% 
   addCircleMarkers(lat = ~latitude, lng = ~longitude, popup = ~CommonName)
 
-
+##### Current Working Map
 
 wdf %>% 
   leaflet() %>% 
   addProviderTiles("Esri.WorldImagery") %>% 
   addCircleMarkers(lng = ~longitude, lat = ~latitude,
-                   label = ~paste("CommonName=", wdf$CommonName, 
-                                  "Refuge=", wdf$RefugeName),
-                   clusterOptions = markerClusterOptions(1)) 
+                   label = ~paste0("CommonName=", wdf$CommonName, 
+                                  "Refuge=", wdf$RefugeName,
+                   #clusterOptions = markerClusterOptions(1),
+                   group = ~CommonName)) %>%  # Group by CommonName
+  addLayersControl( overlayGroups = c("Big brown bat","Brazilian free-tailed bat","California myotis","Canyon bat",
+                                  "Fringed myotis","Hoary bat","Little brown myotis","Long-eared myotis","Long-legged myotis",         
+                                  "Pallid bat","Silver-haired bat","Spotted bat","Townsend big-eared bat",
+                                  "Western red bat","Western small-footed myotis","Yuma myotis" ),
+                   options = layersControlOptions(collapsed = FALSE))
 
+
+
+bats <- c("Big brown bat","Brazilian free-tailed bat","California myotis","Canyon bat",
+"Fringed myotis","Hoary bat","Little brown myotis","Long-eared myotis","Long-legged myotis",         
+"Pallid bat","Silver-haired bat","Spotted bat","Townsend big-eared bat",
+"Western red bat","Western small-footed myotis","Yuma myotis" )
+  
 # add in some species distribution maps for each species
 
-library(ggspatial)
-library(ggmap)
+#Sweet mother of God it works
 
-range(wdf$latitude)
-range(wdf$longitude)
+wdf %>% 
+  leaflet() %>% 
+  addProviderTiles("Esri.WorldImagery") %>% 
+  addCircleMarkers(radius = 10, label = ~paste0("Common Name =", htmlEscape(CommonName),
+                                              
+                                              "Refuge =",htmlEscape(RefugeName)),
+                   color = "blue", group = wdf$CommonName) %>% 
+  addLayersControl(overlayGroups = wdf$CommonName)
 
-base = get_map(location=c(-125,40,-110,49), zoom=7, maptype="stamen_terrain")
-ggmap(base)
+?layersControlOptions
 
-?ggmap
-?get_map
-get_map(location = c(lat = 40,lon = -110))
 
-?register_google
+
+
+
+
+
+
+
+

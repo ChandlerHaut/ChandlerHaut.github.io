@@ -12,7 +12,7 @@ str(quakes)
 data(quakes)
 quakes1 <- quakes[sample(nrow(quakes), 10)]
 #add circle markers
-quakes1 %>% 
+quakes %>% 
   leaflet() %>% 
   addProviderTiles("Esri.WorldImagery") %>% 
   addMarkers(lng = ~long, lat = ~lat) %>%
