@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## [HOME] | [ABOUT ME] | [CV]
+### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME] | [CV]
 
 
 ```{r, out.width= "600px", echo=FALSE}
