@@ -1,3 +1,6 @@
+# My Final Project is going to be looking at bat acoustic data for the Pacific NorWest from the BLM.
+# I'm doing an interactive map that will filter by species to show a visualization over the Refuges.
+# I am also making species distribution maps for each species that has been recorded. 
 library(tidyverse)
 library(gapminder)
 library(stringr)
@@ -6,6 +9,7 @@ library(sf)
 library(shiny)
 library(leaflet.extras)
 library(htmltools)
+library(ggmap)
 
 df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
 
@@ -42,9 +46,9 @@ nb %>%
 names(wdf)
 
 wdf %>% 
-  ggplot(aes(x=latitude, y=longitude, fill = RefugeName))+
-  geom_point()+
-  geom_density2d(aes(x= sum))
+  filter(CommonName == "Big brown bat") %>% 
+  ggplot(aes(x=latitude, y=longitude))+
+  geom_point()
 
 
 
@@ -89,7 +93,7 @@ bats <- c("Big brown bat","Brazilian free-tailed bat","California myotis","Canyo
 "Pallid bat","Silver-haired bat","Spotted bat","Townsend big-eared bat",
 "Western red bat","Western small-footed myotis","Yuma myotis" )
   
-# add in some species distribution maps for each species
+
 
 #Sweet mother of God it works
 
@@ -102,14 +106,29 @@ wdf %>%
                    color = "blue", group = wdf$CommonName) %>% 
   addLayersControl(overlayGroups = wdf$CommonName)
 
-?layersControlOptions
+
+# add in some species distribution maps for each species
 
 
 
 
 
 
+?ggmap
+
+p <- get_map(location = c(lat = 43.618881, lon = -116.215019), 
+                           zoom = 5, maptype = "terrain")
 
 
+ggmap(p) +
+  geom_density_2d(data = wdf, aes(y=latitude, x=longitude))
+  
 
+?ggmap
+  
+bbb <- 
+  wdf %>% 
+  filter(CommonName == "Big brown bat") 
 
+ggmap(p) +
+  geom_density_2d(data = bbb, aes(y=latitude, x=longitude))
