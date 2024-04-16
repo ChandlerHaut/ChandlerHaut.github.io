@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME](https://chandlerhaut.github.io/about_me/) | [CV]
+### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME](https://chandlerhaut.github.io/about_me/) | [CV](https://chandlerhaut.github.io/about_me/CV.pdf)
 
 
 ```{r, out.width= "600px", echo=FALSE}
@@ -16,11 +16,3 @@ knitr::include_graphics("./littlebrownbat.jpg")
 
 hurkin durk a dur happy Lief Erickson Day!!!
 
-wdf %>% 
-  leaflet() %>% 
-  addProviderTiles("Esri.WorldImagery") %>% 
-  addCircleMarkers(radius = 10, label = ~paste0("Common Name =", htmlEscape(CommonName),
-                                              
-                                              "Refuge =",htmlEscape(RefugeName)),
-                   color = "blue", group = wdf$CommonName) %>% 
-  addLayersControl(overlayGroups = wdf$CommonName)
