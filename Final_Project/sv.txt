@@ -1,0 +1,6 @@
+"Location" "Vegitation"
+"1" "South Mountain" "Barren"
+"2" "West Canyon" "Sagebrush"
+"3" "Medic Hill" "Juniper Forest"
+"4" "Cedar Point" "Grassland"
+"5" "Tickville" "Riparian"

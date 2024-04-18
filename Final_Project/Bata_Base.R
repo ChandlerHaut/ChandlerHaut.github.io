@@ -10,6 +10,8 @@ library(shiny)
 library(leaflet.extras)
 library(htmltools)
 library(ggmap)
+library(knitr)
+library(rmarkdown)
 
 df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
 
