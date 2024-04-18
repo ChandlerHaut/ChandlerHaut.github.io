@@ -9,3 +9,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME](https://chandlerhaut.github.io/about_me/) | [CV](https://chandlerhaut.github.io/about_me/CV.pdf)
 
+### **Undergraduate**
+
+I completed my undergraduate at Utah Valley University where I earned a degree in Integrated Studies with an emphasis in Wildlife Biology. 
+```{r, echo=FALSE, out.width="200px"}
+knitr:: include_graphics("Utah_Valley_University_seal.svg")
+```
+
+### **Military Service**
+##### **U.S. Marine Corps, 2016-2020**
+
+The Marines gave me many great oppurtunites over my tour of service. I was stationed in Iwakuni, Japan as a requistion manager with Marine Air Group 12. I was then transferred to Combat Logistics Battalion in California, U.S. where I managed property and fiscal accounts. While I was with CLB-11, I was also deployed with Marine Expeditionary Unit 11 and saw countries such as Qatar, India, and the Philipines. 
+
+```{r, echo=FALSE, out.width="200px"}
+knitr:: include_graphics("CLB-11_LOGO.jpg")
+knitr::include_graphics("MAG_12.jpeg")
+```
+
+
+### **Younger Years**
+
+I was born and raised in Jamestown, North Dakota where I cherished the outdoors. Through my experiences of camping, hunting, and fishing I grew a passion for the environment. This lead me to pursue the career I am today in the field of Wildlife Bilolgy. 
