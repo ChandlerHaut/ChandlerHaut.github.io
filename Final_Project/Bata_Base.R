@@ -12,6 +12,7 @@ library(htmltools)
 library(ggmap)
 library(knitr)
 library(rmarkdown)
+library(sp)
 
 df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
 
@@ -36,25 +37,6 @@ nb %>%
   group_by(CommonName, latitude, longitude, RefugeName) %>% 
   summarise(sum = sum(reviewed))
 
-wdf_sf <- 
-  wdf %>% 
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
-
-
-
-
-ggsave(filename = "./plot1.png", plot = plot1, width = 6, height = 6)
-
-raster_img <- raster::raster("./plot1.png", ext = exten)
-
-wdf %>% 
-leaflet() %>% 
-  addTiles() %>% 
-  addProviderTiles(provider = "Esri.WorldImagery") %>% 
-  #addMarkers( popup = ~RefugeName) %>% 
-  addCircleMarkers(lat = ~latitude, lng = ~longitude, popup = ~CommonName)
-
-##### Current Working Map
 
 wdf %>% 
   leaflet() %>% 
@@ -72,10 +54,7 @@ wdf %>%
 
 
 
-bats <- c("Big brown bat","Brazilian free-tailed bat","California myotis","Canyon bat",
-"Fringed myotis","Hoary bat","Little brown myotis","Long-eared myotis","Long-legged myotis",         
-"Pallid bat","Silver-haired bat","Spotted bat","Townsend big-eared bat",
-"Western red bat","Western small-footed myotis","Yuma myotis" )
+
   
 
 
@@ -88,7 +67,10 @@ wdf %>%
                                               
                                               "Refuge =",htmlEscape(RefugeName)),
                    color = "blue", group = wdf$CommonName) %>% 
-  addLayersControl(overlayGroups = wdf$CommonName)
+  addLayersControl(overlayGroups = wdf$CommonName) %>% 
+  
+
+
 
 
 # add in some species distribution maps for each species
@@ -96,23 +78,43 @@ wdf %>%
 
 
 
+register_google("")
 
-
-?ggmap
 
 p <- get_map(location = c(lat = 43.618881, lon = -116.215019), 
                            zoom = 5, maptype = "terrain")
 
-
-ggmap(p) +
-  geom_density_2d(data = wdf, aes(y=latitude, x=longitude))
-  
-
-?ggmap
   
 bbb <- 
   wdf %>% 
-  filter(CommonName == "Big brown bat") 
+  filter(CommonName == "Big brown bat")
+
+cb <- 
+  wdf %>% 
+  filter(CommonName == "Canyon bat") 
+
+lbm <- 
+  wdf %>% 
+  filter(CommonName == "Little brown myotis") 
 
 ggmap(p) +
-  geom_density_2d(data = bbb, aes(y=latitude, x=longitude))
+  geom_density_2d(data = bbb, aes(y=latitude, x=longitude, color = "red"), h = 2)
+
+
+ggmap(p) +
+  geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)
+
+ggmap(p) +
+  geom_tile(data = bbb, aes(y=latitude, x=longitude, fill = sum))+
+  scale_fill_gradient(low = "blue", high = "red")
+
+ggmap(p) +
+  geom_polygon(data = bbb, aes(x = longitude, y = latitude))
+
+
+
+
+
+
+
+

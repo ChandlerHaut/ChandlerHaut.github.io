@@ -9,11 +9,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME](https://chandlerhaut.github.io/about_me/) | [CV](https://chandlerhaut.github.io/about_me/CV.pdf) | [FINAL PROJECT](https://chandlerhaut.github.io/Final_Project/)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Interactive Map (filter by Common Name)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
+```{r cars, echo=FALSE, message=FALSE}
 
 library(tidyverse)
 library(gapminder)
@@ -60,12 +58,34 @@ wdf %>%
   addLayersControl(overlayGroups = wdf$CommonName)
 ```
 
-## Including Plots
+## Distribution of Big Brown Bats
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r pressure, echo=FALSE, message=FALSE}
+p <- get_map(location = c(lat = 43.618881, lon = -116.215019), 
+                           zoom = 5, maptype = "terrain")
+
+  
+bbb <- 
+  wdf %>% 
+  filter(CommonName == "Big brown bat")
+
+cb <- 
+  wdf %>% 
+  filter(CommonName == "Canyon bat") 
+
+lbm <- 
+  wdf %>% 
+  filter(CommonName == "Little brown myotis") 
+
+ggmap(p) +
+  geom_density_2d(data = bbb, aes(y=latitude, x=longitude), h = 2)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+ggmap(p) +
+  geom_density_2d(data = cb, aes(y=latitude, x=longitude), h = 2)
+ggmap(p) +
+  geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)
+```
+
