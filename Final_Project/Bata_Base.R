@@ -64,15 +64,17 @@ wdf %>%
   leaflet() %>% 
   addProviderTiles("Esri.WorldImagery") %>% 
   addCircleMarkers(radius = 10, label = ~paste0("Common Name =", htmlEscape(CommonName),
-                                              
                                               "Refuge =",htmlEscape(RefugeName)),
                    color = "blue", group = wdf$CommonName) %>% 
-  addLayersControl(overlayGroups = wdf$CommonName) %>% 
+  addLayersControl(baseGroups = wdf$CommonName)
   
 
+wdf %>% 
+  leaflet() %>% 
+  addProviderTiles("Esri.WorldImagery") %>% 
+  addGeoJSON()
 
-
-
+?addPolygons
 # add in some species distribution maps for each species
 
 
@@ -85,31 +87,155 @@ p <- get_map(location = c(lat = 43.618881, lon = -116.215019),
                            zoom = 5, maptype = "terrain")
 
   
+
+
+
+
 bbb <- 
   wdf %>% 
   filter(CommonName == "Big brown bat")
+
+ggmap(p) +
+  geom_density_2d(data = bbb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Big Brown Bat")
+
+bftb <- 
+  wdf %>% 
+  filter(CommonName == "Brazilian free-tailed bat")
+
+ggmap(p) +
+  geom_density_2d(data = bftb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Brazilian Free-tailed Bat")
+
+cm <- 
+  wdf %>% 
+  filter(CommonName == "California myotis")
+
+ggmap(p) +
+  geom_density_2d(data = cm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("California myotis")
 
 cb <- 
   wdf %>% 
   filter(CommonName == "Canyon bat") 
 
+ggmap(p) +
+  geom_density_2d(data = cb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Canyon bat")
+
+fm <- 
+  wdf %>% 
+  filter(CommonName == "Fringed myotis")
+
+ggmap(p) +
+  geom_density_2d(data = fm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Fringed myotis")
+
+hb <- 
+  wdf %>% 
+  filter(CommonName == "Hoary bat")
+
+ggmap(p) +
+  geom_density_2d(data = hb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Hoary Bat")
+
 lbm <- 
   wdf %>% 
-  filter(CommonName == "Little brown myotis") 
+  filter(CommonName == "Little brown myotis")
+
+ggmap(p) +
+  geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Little brown myotis")
+
+lem <- 
+  wdf %>% 
+  filter(CommonName == "Long-eared myotis") 
+
+ggmap(p) +
+  geom_density_2d(data = lem, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Long-eared myotis")
+
+llm <- 
+  wdf %>% 
+  filter(CommonName == "Long-legged myotis") 
+
+ggmap(p) +
+  geom_density_2d(data = llm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Long-legged Myotis")
+
+pb <- 
+  wdf %>% 
+  filter(CommonName == "Pallid bat") 
+
+ggmap(p) +
+  geom_density_2d(data = pb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Pallid Bat")
+
+shb <- 
+  wdf %>% 
+  filter(CommonName == "Silver-haired bat") 
+
+ggmap(p) +
+  geom_density_2d(data = shb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Silver-haired bat")
+
+sb <- 
+  wdf %>% 
+  filter(CommonName == "Spotted bat") 
+
+ggmap(p) +
+  geom_density_2d(data = sb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Spotted Bat")
+
+tbeb<- 
+  wdf %>% 
+  filter(CommonName == "Townsend big-eared bat") 
+
+ggmap(p) +
+  geom_density_2d(data = tbeb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Townsend Big-eared Bat")
+
+wrb <- 
+  wdf %>% 
+  filter(CommonName == "Western red bat") 
+
+ggmap(p) +
+  geom_density_2d(data = wrb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Western Red Bat")
+
+wsfm<- 
+  wdf %>% 
+  filter(CommonName == "Western small-footed myotis") 
+
+ggmap(p) +
+  geom_density_2d(data = wsfm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Western Small-footed Myotis")
+
+ym <- 
+  wdf %>% 
+  filter(CommonName == "Yuma myotis") 
+
+ggmap(p) +
+  geom_density_2d(data = ym, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Yuma Myotis")
+
+
 
 ggmap(p) +
   geom_density_2d(data = bbb, aes(y=latitude, x=longitude, color = "red"), h = 2)
 
 
 ggmap(p) +
-  geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)
+  geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("yee")
+  
+?ggplot
 
 ggmap(p) +
   geom_tile(data = bbb, aes(y=latitude, x=longitude, fill = sum))+
   scale_fill_gradient(low = "blue", high = "red")
 
-ggmap(p) +
-  geom_polygon(data = bbb, aes(x = longitude, y = latitude))
+
 
 
 
