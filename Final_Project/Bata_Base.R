@@ -30,29 +30,11 @@ nb <- #Placed the below code in the origianl bats df to keep my SHIT together
 #figure out what your quesiton is!!!!!!
 # We want to see the population size changes over time of the bats, maybe use the animate
 
-nb %>% 
-  filter(!is.na(ObservationDate)) %>% 
-  mutate(ObservationDate = as.factor(ObservationDate)) %>%
-  ggplot(aes(x=ObservationDate))+
-  geom_bar(aes(color = CommonName))+
-  facet_wrap(~admin1, scales = "free")
-
-
-
 wdf <- 
 nb %>% 
   filter(!is.na(confirmed)) %>% 
   group_by(CommonName, latitude, longitude, RefugeName) %>% 
   summarise(sum = sum(reviewed))
-
-names(wdf)
-
-wdf %>% 
-  filter(CommonName == "Big brown bat") %>% 
-  ggplot(aes(x=latitude, y=longitude))+
-  geom_point()
-
-
 
 wdf_sf <- 
   wdf %>% 
