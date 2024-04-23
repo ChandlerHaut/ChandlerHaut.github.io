@@ -14,7 +14,50 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+
+library(tidyverse)
+library(gapminder)
+library(stringr)
+library(leaflet)
+library(sf)
+library(shiny)
+library(leaflet.extras)
+library(htmltools)
+library(ggmap)
+library(knitr)
+library(rmarkdown)
+df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
+
+bats <- df %>% 
+  filter(!is.na(CommonName)) %>% 
+  mutate(CommonName = str_replace(CommonName, "Townsend\x92s big-eared bat", 
+                                  "Townsend big-eared bat")) %>% 
+  select(-"organization_name",-"species_list",-"frame", -"project_name")
+
+nb <- #Placed the below code in the origianl bats df to keep my SHIT together
+  bats %>% 
+  filter(!is.na(CommonName)) %>% 
+  mutate(CommonName = str_replace(CommonName, "Townsend\x92s big-eared bat", 
+                                  "Townsend big-eared bat"))
+
+#figure out what your quesiton is!!!!!!
+# We want to see the population size changes over time of the bats, maybe use the animate
+
+wdf <- 
+nb %>% 
+  filter(!is.na(confirmed)) %>% 
+  group_by(CommonName, latitude, longitude, RefugeName) %>% 
+  summarise(sum = sum(reviewed))
+
+
+wdf %>% 
+  leaflet() %>% 
+  addProviderTiles("Esri.WorldImagery") %>% 
+  addCircleMarkers(radius = 10, label = ~paste0("Common Name =", htmlEscape(CommonName),
+                                              
+                                              "Refuge =",htmlEscape(RefugeName)),
+                   color = "blue", group = wdf$CommonName) %>% 
+  addLayersControl(overlayGroups = wdf$CommonName)
 ```
 
 ## Including Plots
