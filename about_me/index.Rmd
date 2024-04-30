@@ -1,6 +1,8 @@
 ---
 title: "About Me"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
 ---
 
 ```{r setup, include=FALSE}
