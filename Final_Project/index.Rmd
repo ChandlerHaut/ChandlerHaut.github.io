@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Background
 
-The data used for this project is acoustic signals recorded by the Bureau of Land Management on Wildlife Refuges throughout the Pacific Northwest. 
+The data used for this project is bat acoustic signals recorded on Wildlife Refuges throughout the Pacific Northwest. Acoustic data is recorded with a portable recording device and microphone, mounted upon a painters pole. These are place in riparian areas where bats are likely to obtain water and insects.  
 
-## Interactive Map
+
 
 ```{r cars, echo=FALSE,message=FALSE}
 
@@ -31,6 +31,8 @@ library(rmarkdown)
 
 df <- read_csv('./R1_NABat_VettedObservations_NWRS2022.csv')
 
+view(df)
+
 bats <- df %>% 
   filter(!is.na(CommonName)) %>% 
   mutate(CommonName = str_replace(CommonName, "Townsend\x92s big-eared bat", 
@@ -43,8 +45,6 @@ nb <- #Placed the below code in the origianl bats df to keep my SHIT together
   mutate(CommonName = str_replace(CommonName, "Townsend\x92s big-eared bat", 
                                   "Townsend big-eared bat"))
 
-#figure out what your quesiton is!!!!!!
-# We want to see the population size changes over time of the bats, maybe use the animate
 
 wdf <- 
 nb %>% 
@@ -52,26 +52,45 @@ nb %>%
   group_by(CommonName, latitude, longitude, RefugeName) %>% 
   summarise(sum = sum(reviewed))
 
+```
 
+```{r}
+print(df)
+print(wdf)
+```
+
+
+
+## Interactive Map
+```{r, echo=TRUE, message=FALSE}
 wdf %>% 
   leaflet() %>% 
   addProviderTiles("Esri.WorldImagery") %>% 
-  addCircleMarkers(radius = 10, label = ~paste0("Common Name =", htmlEscape(CommonName),
-                                              "Refuge =",htmlEscape(RefugeName)),
+  addCircleMarkers(radius = 10, label = ~paste0("Refuge =",htmlEscape(RefugeName)),
                    color = "blue", group = wdf$CommonName) %>% 
   addLayersControl(baseGroups = wdf$CommonName)
 ```
 
-## Distribution of: 
+## How to get a map: 
 
-```{r pressure, echo=FALSE, message=FALSE}
+```{r map, echo=TRUE, message=FALSE, results='hide'}
+library(ggmap)
+
 p <- get_map(location = c(lat = 43.618881, lon = -116.215019), 
                            zoom = 5, maptype = "terrain")
 
+bbb <- 
+  wdf %>% 
+  filter(CommonName == "Big brown bat")
+
+ggmap(p) +
+  geom_density_2d(data = bbb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Big Brown Bat")
 
 ```
 
 
+## Distribution of: 
 
 ```{r,echo=FALSE, fig.show='hold', out.width="50%", message=FALSE}
 bbb <- 
@@ -82,13 +101,6 @@ ggmap(p) +
   geom_density_2d(data = bbb, aes(y=latitude, x=longitude), h = 2)+
   ggtitle("Big Brown Bat")
 
-bftb <- 
-  wdf %>% 
-  filter(CommonName == "Brazilian free-tailed bat")
-
-ggmap(p) +
-  geom_density_2d(data = bftb, aes(y=latitude, x=longitude), h = 2)+
-  ggtitle("Brazilian Free-tailed Bat")
 
 cm <- 
   wdf %>% 
@@ -146,13 +158,6 @@ ggmap(p) +
   geom_density_2d(data = llm, aes(y=latitude, x=longitude), h = 2)+
   ggtitle("Long-legged Myotis")
 
-pb <- 
-  wdf %>% 
-  filter(CommonName == "Pallid bat") 
-
-ggmap(p) +
-  geom_density_2d(data = pb, aes(y=latitude, x=longitude), h = 2)+
-  ggtitle("Pallid Bat")
 
 shb <- 
   wdf %>% 
@@ -162,13 +167,6 @@ ggmap(p) +
   geom_density_2d(data = shb, aes(y=latitude, x=longitude), h = 2)+
   ggtitle("Silver-haired bat")
 
-sb <- 
-  wdf %>% 
-  filter(CommonName == "Spotted bat") 
-
-ggmap(p) +
-  geom_density_2d(data = sb, aes(y=latitude, x=longitude), h = 2)+
-  ggtitle("Spotted Bat")
 
 tbeb<- 
   wdf %>% 
@@ -178,13 +176,6 @@ ggmap(p) +
   geom_density_2d(data = tbeb, aes(y=latitude, x=longitude), h = 2)+
   ggtitle("Townsend Big-eared Bat")
 
-wrb <- 
-  wdf %>% 
-  filter(CommonName == "Western red bat") 
-
-ggmap(p) +
-  geom_density_2d(data = wrb, aes(y=latitude, x=longitude), h = 2)+
-  ggtitle("Western Red Bat")
 
 wsfm<- 
   wdf %>% 
@@ -203,6 +194,54 @@ ggmap(p) +
   ggtitle("Yuma Myotis")
 ```
 
+
+
+
+
+## Species of Greates Concern:
+```{r,echo=FALSE, fig.show='hold', out.width="50%", message=FALSE}
+bftb <- 
+  wdf %>% 
+  filter(CommonName == "Brazilian free-tailed bat")
+
+ggmap(p) +
+  geom_density_2d(data = bftb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Brazilian Free-tailed Bat")
+
+pb <- 
+  wdf %>% 
+  filter(CommonName == "Pallid bat") 
+
+ggmap(p) +
+  geom_density_2d(data = pb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Pallid Bat")
+
+sb <- 
+  wdf %>% 
+  filter(CommonName == "Spotted bat") 
+
+ggmap(p) +
+  geom_density_2d(data = sb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Spotted Bat")
+
+wrb <- 
+  wdf %>% 
+  filter(CommonName == "Western red bat") 
+
+ggmap(p) +
+  geom_density_2d(data = wrb, aes(y=latitude, x=longitude), h = 2)+
+  ggtitle("Western Red Bat")
+
+```
+
+
+## Conclusion:
+
+Throughout the Pacific Northwest there are 16 species of bats, four (Brazilian Free-tailed Bat, Pallid Bat, Spotted Bat, Western Red Bat) which have a reduced range. One (Little Brown Myotis) species that resides in the Pacific Northwest is endangered but has a substantial presence. 
+
+## Discussion: 
+
+Comparing data with the Southwestern United States would be Acoustic recordings are a great way to identify species within an area but are not ideal to determine the population sizes for those species. Species with reduced ranges or protective status should be trapped through mist netting procedures
 
 
 

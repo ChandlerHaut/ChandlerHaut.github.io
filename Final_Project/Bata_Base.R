@@ -83,11 +83,11 @@ wdf %>%
 register_google("")
 
 
-p <- get_map(location = c(lat = 43.618881, lon = -116.215019), 
-                           zoom = 5, maptype = "terrain")
+p <- get_map(location = c(lat = 40.44041496666531, lon = -112.01505661629491), 
+                           zoom = 12, maptype = "terrain")
 
   
-
+ggmap(p)
 
 
 
@@ -229,11 +229,6 @@ ggmap(p) +
   geom_density_2d(data = lbm, aes(y=latitude, x=longitude), h = 2)+
   ggtitle("yee")
   
-?ggplot
-
-ggmap(p) +
-  geom_tile(data = bbb, aes(y=latitude, x=longitude, fill = sum))+
-  scale_fill_gradient(low = "blue", high = "red")
 
 
 
@@ -243,4 +238,31 @@ ggmap(p) +
 
 
 
+######### Capstone Crap
 
+p <- get_map(location = c(lat = 40.44041496666531, lon = -112.01505661629491), 
+             zoom = 12, maptype = "hybrid")
+
+
+ggmap(p)
+
+md <- read_csv("new_mock_data.csv")
+
+data <- data.frame(
+  location = c("South Mountain" ,"West Canyon" ,   "Medic Hill"  ,   "Cedar Point"   , "Tickville"),
+  lat = c( 40.45831, 40.41274, 40.39375, 40.40603, 40.42912)),
+  lon = c( -112.03675,-112.09848,-112.00709,-111.97177,-112.03567))
+)
+
+
+fdf <- merge(md, data, by = "location")
+
+dm <- 
+  fdf %>% 
+  filter(species == "Deer Mouse")
+  
+cw_map <- ggmap(p) +
+  geom_density_2d(data = dm, aes(y = lat, x = lon), adjust = 1/4)+
+  ggtitle("Deer Mouse Distribution")
+
+ggsave("DMD_map.png", plot = cw_map, width = 10, height = 8, units = "in", dpi = 300)
