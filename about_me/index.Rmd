@@ -20,6 +20,7 @@ I am currently a wildlife technician at Camp Williams, Bluffdale, UT. My primary
 ### **Undergraduate**
 
 I completed my undergraduate at Utah Valley University where I earned a degree in Integrated Studies with an emphasis in Wildlife Biology. 
+
 ```{r, echo=FALSE, out.width="200px"}
 knitr:: include_graphics("Utah_Valley_University_seal.svg")
 ```
