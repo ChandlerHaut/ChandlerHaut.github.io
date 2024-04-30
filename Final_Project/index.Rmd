@@ -198,7 +198,7 @@ ggmap(p) +
 
 
 
-## Species of Greates Concern:
+## Species of Greatest Concern:
 ```{r,echo=FALSE, fig.show='hold', out.width="50%", message=FALSE}
 bftb <- 
   wdf %>% 
