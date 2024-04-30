@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### [HOME](https://chandlerhaut.github.io/) | [ABOUT ME](https://chandlerhaut.github.io/about_me/) | [CV](https://chandlerhaut.github.io/about_me/CV.pdf) | [FINAL PROJECT](https://chandlerhaut.github.io/Final_Project/)
 
-### **Current Postition: Wildlife Technician**
+### **Current Position: Wildlife Technician**
 
 I am currently a wildlife technician at Camp Williams, Bluffdale, UT. My primary responsibilities are small mammals which include mist netting bats, operating pit fall traps, and conducting sherman trapping surveys. However, we are a team so assisting the avian and reptile techs occurs daily. 
 
